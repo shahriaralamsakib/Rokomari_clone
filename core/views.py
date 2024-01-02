@@ -2,18 +2,18 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
-from .models import UserInfo
-from .serializers import UserInfoSerializer
+from .models import User
+from .serializers import UserSerializer
 # Create your views here.
 
 class UserRegistrationView(generics.CreateAPIView):
-    queryset = UserInfo.objects.all()
-    serializer_class = UserInfoSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-class UserInfoView(generics.RetrieveAPIView):
-    queryset = UserInfo.objects.all()
-    serializer_class = UserInfoSerializer
+class UserView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class AllUsersView(generics.ListAPIView):
-    queryset = UserInfo.objects.all()
-    serializer_class = UserInfoSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
