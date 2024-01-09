@@ -8,7 +8,9 @@ from .views import (
     UserLogoutView,
     UserProfileView,
     BookListCreateView,
-    BookRetrieveUpdateDestroyView
+    BookRetrieveUpdateDestroyView,
+    CartListCreateView,
+    CartDetailView
 )
 
 urlpatterns = [
@@ -21,5 +23,8 @@ urlpatterns = [
     path('profile/<int:pk>/', UserProfileView.as_view(), name='user-profile'),
     path('books/', BookListCreateView.as_view(), name='book-list-create'),
     path('books/<int:pk>/', BookRetrieveUpdateDestroyView.as_view(), name='book-retrieve-update-destroy'),
+    path('carts/', CartListCreateView.as_view(), name='cart-list-create'),
+    path('carts/<int:pk>/', CartDetailView.as_view(), name='cart-detail'),
+
 
 ]
