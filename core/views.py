@@ -4,8 +4,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from .models import User
-from .models import User, UserProfile
-from .serializers import UserSerializer, UserProfileSerializer
+from .models import User, UserProfile, Book
+from .serializers import UserSerializer, UserProfileSerializer, BookSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from rest_framework.views import APIView
@@ -62,3 +62,11 @@ def some_view(request):
     else:
         # This is a general customer
         return HttpResponse("Welcome, Customer!")
+
+class BookListCreateView(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class BookRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer

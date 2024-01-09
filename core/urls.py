@@ -6,7 +6,9 @@ from .views import (
     AllUsersView,
     UserLoginView,
     UserLogoutView,
-    UserProfileView
+    UserProfileView,
+    BookListCreateView,
+    BookRetrieveUpdateDestroyView
 )
 
 urlpatterns = [
@@ -17,4 +19,7 @@ urlpatterns = [
     path('user/<int:pk>/', UserView.as_view(), name='user'),
     path('users/', AllUsersView.as_view(), name='all-users'),
     path('profile/<int:pk>/', UserProfileView.as_view(), name='user-profile'),
+    path('books/', BookListCreateView.as_view(), name='book-list-create'),
+    path('books/<int:pk>/', BookRetrieveUpdateDestroyView.as_view(), name='book-retrieve-update-destroy'),
+
 ]
