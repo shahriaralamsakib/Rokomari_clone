@@ -7,6 +7,15 @@ CATEGORY_CHOICES = (
     ('O', 'Other'),
 )
 
+TYPE_CHOICES = [
+    ('author', 'Author'),
+    ('publisher', 'Publisher'),
+    ('customer', 'Customer'),
+    ('admin', 'Admin'),
+    ('manager', 'Manager'),
+    # Add more user types as needed
+]
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email, password=None, **extra_fields):
         if not email:
@@ -28,6 +37,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=3, choices=CATEGORY_CHOICES, default=None, blank=True, null=True)
     phone = models.CharField(max_length=11, null=True)
     address = models.TextField(blank=True, null=True)
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES,null=True)
 
     objects = CustomUserManager()
 
@@ -36,22 +46,22 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
 
-class Book(models.Model):
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    published_date = models.DateField()
-    cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
-    stock = models.PositiveIntegerField(default=0)
+class AuthorProfile(models.Model):
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    # Add fields specific to the author profile
 
-    def __str__(self):
-        return self.title
+class PublisherProfile(models.Model):
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    # Add fields specific to the publisher profile
 
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    Book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+class CustomerProfile(models.Model):
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    # Add fields specific to the customer profile
 
-    def __str__(self):
-        return str(self.id)
+class AdminProfile(models.Model):
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    # Add fields specific to the admin profile
+
+class ManagerProfile(models.Model):
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    # Add fields specific to the manager profile
