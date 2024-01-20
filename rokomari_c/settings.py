@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'inventory',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 MIDDLEWARE = [
@@ -87,7 +89,7 @@ WSGI_APPLICATION = 'rokomari_c.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "rokomari_c",
+        "NAME": "ro_c",
         "USER": "sakib",
         "PASSWORD": "sakib",
         "HOST": "127.0.0.1",
