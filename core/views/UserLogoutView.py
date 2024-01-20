@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-# class UserLogoutView(APIView):
-#     def post(self, request, *args, **kwargs):
-#         logout(request)
-#         return JsonResponse({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
+class UserLogoutView(APIView):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return JsonResponse({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
