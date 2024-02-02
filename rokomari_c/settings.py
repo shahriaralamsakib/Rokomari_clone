@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'drf_spectacular_sidecar',
+    'versatileimagefield',
 ]
 
 REST_FRAMEWORK = {

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from versatileimagefield.fields import VersatileImageField
+from versatileimagefield.placeholder import OnDiscPlaceholderImage
 
 CATEGORY_CHOICES = (
     ('M', 'Male'),
@@ -34,4 +36,4 @@ class User(AbstractUser):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_picture = VersatileImageField('Image',upload_to='profile_pics/', null=True, width_field='width', height_field='height')
